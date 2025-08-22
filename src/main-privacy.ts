@@ -50,6 +50,6 @@ async function bootstrap() {
   console.log(`📚 Documentación Swagger disponible en http://localhost:${port}/api`);
   console.log(`⛓️ Avalanche Hack2Build: Privacy Edition`);
   console.log(`🛡️ EERC20 Privacy Tokens & Zero-Knowledge Proofs`);
-  console.log(`💾 Usando base de datos SQLite: kredentia.db`);
+  console.log(`💾 Usando base de datos SQLite: database.sqlite`);
 }
 bootstrap();
