@@ -567,11 +567,11 @@ graph TB
     P -.->|7. Confidential On-Chain| V
     E -.->|8. ZK Verification| R
 
-    classDef frontend fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
-    classDef backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
-    classDef database fill:#e1f5fe,stroke:#0277bd,stroke-width:3px
-    classDef privacy fill:#fff3e0,stroke:#ef6c00,stroke-width:4px
-    classDef infrastructure fill:#fce4ec,stroke:#ad1457,stroke-width:2px
+    classDef frontend fill:#000,stroke:#2e7d32,stroke-width:3px
+    classDef backend fill:#000,stroke:#7b1fa2,stroke-width:3px
+    classDef database fill:#000,stroke:#0277bd,stroke-width:3px
+    classDef privacy fill:#000,stroke:#ef6c00,stroke-width:4px
+    classDef infrastructure fill:#000,stroke:#ad1457,stroke-width:2px
 
     class A,B,C,D,E frontend
     class F,G,H,I,J,K,L backend
