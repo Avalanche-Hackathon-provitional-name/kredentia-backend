@@ -15,14 +15,17 @@ COPY package*.json ./
 COPY tsconfig*.json ./
 COPY nest-cli.json ./
 
-# Instala las dependencias
-RUN npm ci --only=production && npm cache clean --force
+# Instala todas las dependencias (incluyendo devDependencies para el build)
+RUN npm ci && npm cache clean --force
 
 # Copia el código fuente
 COPY src/ ./src/
 
 # Construye la aplicación
 RUN npm run build
+
+# Limpia las devDependencies después del build
+RUN npm prune --omit=dev
 
 # Stage 2: Production stage
 FROM node:18-alpine AS production
