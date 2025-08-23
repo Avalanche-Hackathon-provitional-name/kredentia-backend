@@ -1,7 +1,18 @@
 # Kredentia Backend - Privacy Edition 🔒
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Hack2Build-Privacy%20Edition-4A90E2?style=for-the-badge&logo=avalanche&logoColor=white" alt="Hack2Build Privacy Edition" />
+  <img src="https://img.shields.io/badge/Hack2Build-Privacy%20Edition-4A90E2?style=for-the-badge- **🔒 EERC20 Integration**: Enhanced ERC20 tokens with privacy features on Avalanche Fuji Testnet
+- **📄 Encrypted CSV Processing**: Zero-knowledge bulk upload and process document data
+- **🔐 Zero-Knowledge Hashing**: Private CI (Identity Card) hashing with ZK proofs
+- **📱 Privacy QR Generation**: Confidential QR codes for document verification
+- **💳 Confidential Wallet Integration**: Privacy-preserving wallet addresses linkage
+- **📊 Encrypted Database**: End-to-end encrypted data storage
+- **📚 Privacy API Documentation**: Complete API documentation with privacy considerations
+- **🛡️ ZK Validation**: Zero-knowledge proof validation using advanced cryptography
+- **🌐 Privacy CORS**: Secure cross-origin resource sharing for frontend integration
+- **⛓️ Avalanche Fuji Testnet**: Native integration with Avalanche Fuji for fast, low-cost testing
+- **🔔 Real-time Notifications**: WebSocket-based event notifications for blockchain activities
+- **📡 Blockchain Event Listening**: Automatic monitoring of DocumentSignatureManager contract eventsanche&logoColor=white" alt="Hack2Build Privacy Edition" />
   <img src="https://img.shields.io/badge/Avalanche-E84142?style=for-the-badge&logo=avalanche&logoColor=white" alt="Avalanche" />
   <img src="https://img.shields.io/badge/EERC20-4A90E2?style=for-the-badge&logo=ethereum&logoColor=white" alt="EERC20" />
   <img src="https://img.shields.io/badge/Zero--Knowledge-�️-green?style=for-the-badge" alt="Zero-Knowledge" />
@@ -220,6 +231,19 @@ npm run start:dev
 | `GET` | `/tokens` | List all privacy tokens | 🔒 **Medium** | 📊 Metadata |
 | `GET` | `/metadata/:token_id` | Get encrypted token metadata | 🔒 **High** | 🔒 Encrypted |
 
+### **🔔 Notifications Controller (`/api/notifications`)**
+
+| Method | Endpoint | Description | Real-time | Features |
+|--------|----------|-------------|-----------|----------|
+| `GET` | `/stats` | Get WebSocket connection statistics | ⚡ **Live** | 📊 Statistics |
+| `GET` | `/clients` | List connected WebSocket clients | ⚡ **Live** | 👥 Clients |
+| `POST` | `/test` | Send test notification to all clients | ⚡ **Live** | 🧪 Testing |
+| `GET` | `/blockchain/status` | Get blockchain event listener status | ⛓️ **Blockchain** | 📡 Status |
+| `GET` | `/blockchain/events/historical` | Get historical blockchain events | ⛓️ **Blockchain** | 📚 History |
+| `POST` | `/blockchain/events/manual` | Manually trigger event processing | ⛓️ **Blockchain** | 🔧 Manual |
+| `GET` | `/join/:room` | Join specific notification room | ⚡ **Live** | 🏠 Rooms |
+| `POST` | `/broadcast/:room` | Broadcast to specific room | ⚡ **Live** | 📡 Broadcast |
+
 ## 🧪 **Swagger Testing Guide - Privacy Edition**
 
 ### **Step 1: Access Swagger UI**
@@ -342,7 +366,98 @@ GET /api/eerc20/balance/0x1234567890123456789012345678901234567890?confidential=
 }
 ```
 
-### **Step 5: Zero-Knowledge Verification**
+### **Step 5: Test Real-time Notifications**
+
+#### **📊 Get WebSocket Statistics**
+```bash
+GET /api/notifications/stats
+```
+
+**Expected Response:**
+```json
+{
+  "connectedClients": 5,
+  "totalConnections": 25,
+  "rooms": {
+    "user_123": 2,
+    "document_abc": 1,
+    "general": 2
+  },
+  "uptime": "2h 35m 12s",
+  "lastEventTime": "2025-08-23T15:30:45.123Z"
+}
+```
+
+#### **⛓️ Check Blockchain Status**
+```bash
+GET /api/notifications/blockchain/status
+```
+
+**Expected Response:**
+```json
+{
+  "isConnected": true,
+  "chainId": 43113,
+  "network": "Fuji Testnet",
+  "contractAddress": "0x1234567890123456789012345678901234567890",
+  "currentBlock": 15678234,
+  "lastProcessedBlock": 15678230,
+  "eventsListening": true,
+  "provider": "https://api.avax-test.network/ext/bc/C/rpc"
+}
+```
+
+#### **🧪 Send Test Notification**
+```bash
+POST /api/notifications/test
+```
+
+**Request Body:**
+```json
+{
+  "message": "Testing blockchain event notification",
+  "type": "test",
+  "room": "general"
+}
+```
+
+**Expected Response:**
+```json
+{
+  "success": true,
+  "message": "Test notification sent",
+  "recipients": 5,
+  "room": "general",
+  "timestamp": "2025-08-23T15:30:45.123Z"
+}
+```
+
+#### **📚 Get Historical Blockchain Events**
+```bash
+GET /api/notifications/blockchain/events/historical?limit=10&offset=0
+```
+
+**Expected Response:**
+```json
+{
+  "events": [
+    {
+      "eventType": "SignatureAdded",
+      "documentId": "123",
+      "signer": "0xabcdef...",
+      "signature": "0x123456...",
+      "blockNumber": 15678230,
+      "transactionHash": "0xabcdef123456...",
+      "timestamp": "2025-08-23T15:25:30.000Z"
+    }
+  ],
+  "total": 25,
+  "limit": 10,
+  "offset": 0
+}
+```
+
+### **Step 6: Zero-Knowledge Verification**
 
 #### **🛡️ Anonymous Document Verification**
 ```bash
@@ -412,6 +527,23 @@ DB_DATABASE=database.sqlite
 # Application Configuration
 PORT=3000
 NODE_ENV=development
+
+# Blockchain Configuration - Avalanche Fuji Testnet
+BLOCKCHAIN_NETWORK=fuji
+BLOCKCHAIN_RPC_URL=https://api.avax-test.network/ext/bc/C/rpc
+CHAIN_ID=43113
+
+# Smart Contract Addresses
+DOCUMENT_SIGNATURE_MANAGER_ADDRESS=0x0000000000000000000000000000000000000000
+
+# WebSocket Configuration
+WEBSOCKET_CORS_ORIGIN=http://localhost:3001
+WEBSOCKET_PORT=3000
+
+# Event Listener Configuration
+ENABLE_BLOCKCHAIN_EVENTS=true
+EVENT_LISTENER_INTERVAL=5000
+START_BLOCK=latest
 ```
 
 ## 📚 API Documentation

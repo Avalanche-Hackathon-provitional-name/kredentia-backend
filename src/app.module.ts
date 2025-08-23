@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PersonModule } from './modules/person.module';
 import { PrivacyModule } from './modules/privacy.module';
+import { NotificationModule } from './modules/notification.module';
 import { databaseConfig } from './config/database.config';
 
 @Module({
@@ -19,6 +20,7 @@ import { databaseConfig } from './config/database.config';
     }),
     PersonModule,
     PrivacyModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
