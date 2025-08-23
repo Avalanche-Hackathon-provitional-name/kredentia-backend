@@ -7,8 +7,8 @@ FROM node:18-alpine AS builder
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Instala herramientas necesarias para compilación
-RUN apk add --no-cache python3 make g++
+# Instala herramientas necesarias para compilación y Python
+RUN apk add --no-cache python3 make g++ sqlite
 
 # Copia los archivos de dependencias
 COPY package*.json ./
