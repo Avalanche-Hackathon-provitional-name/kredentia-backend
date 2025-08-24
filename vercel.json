@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "name": "kredentia-backend",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "dist/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/main.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "dist/main.js": {
+      "includeFiles": "dist/**"
+    }
+  }
+}

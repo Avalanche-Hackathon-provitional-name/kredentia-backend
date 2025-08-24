@@ -44,10 +44,10 @@ async function bootstrap() {
   });
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   
-  console.log(`🔒 Kredentia Privacy Edition iniciada en http://localhost:${port}`);
-  console.log(`📚 Documentación Swagger disponible en http://localhost:${port}/api`);
+  console.log(`🔒 Kredentia Privacy Edition iniciada en puerto ${port}`);
+  console.log(`📚 Documentación Swagger disponible en /api`);
   console.log(`⛓️ Avalanche Hack2Build: Privacy Edition`);
   console.log(`🛡️ EERC20 Privacy Tokens & Zero-Knowledge Proofs`);
   console.log(`💾 Usando base de datos SQLite: kredentia.db`);
